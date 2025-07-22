@@ -1,0 +1,34 @@
+.hero-section {
+    height: 80vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel-img {
+    height: 80vh;
+    object-fit: cover;
+    filter: brightness(0.8);
+    transition: transform 0.5s ease;
+}
+
+.carousel-img:hover {
+    transform: scale(1.02);
+}
+
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 1rem;
+    border-radius: 12px;
+    backdrop-filter: blur(6px);
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 32px;
+    box-shadow: inset 0 0 0 4px gold;
+    pointer-events: none;
+}
