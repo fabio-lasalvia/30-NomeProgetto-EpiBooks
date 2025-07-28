@@ -1,73 +1,78 @@
 import { useState } from "react"
-import { Form, Button } from "react-bootstrap"
+import { Form, Button, Spinner, Alert } from "react-bootstrap"
+import useCommentPost from "../hooks/comments/useCommentPost"
 
 function AddComment({ asin }) {
+  const { commentPost, isPosting, error } = useCommentPost()
 
-    const [datiForm, setDatiForm] = useState({
-        elementId: asin,
-        comment: "",
-        rate: "1"
+  const [formData, setFormData] = useState({
+    comment: '',
+    rate: '1',
+    elementId: asin
+  })
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+      elementId: asin // lo rimettiamo ogni volta per sicurezza
     })
+  }
 
-    const API_URL = 'https://striveschool-api.herokuapp.com/api/comments'
+  const salvaDati = async (e) => {
+    e.preventDefault()
+    await commentPost(formData)
+    // opzionale: reset del form dopo l'invio
+    setFormData({
+      comment: '',
+      rate: '1',
+      elementId: asin
+    })
+  }
 
-    function salvaDati(e) {
-        e.preventDefault()
+  return (
+    <>
+      <Form onSubmit={salvaDati}>
+        <Form.Group className="mb-2">
+          <Form.Label>Commento</Form.Label>
+          <Form.Control
+            type="text"
+            name="comment"
+            value={formData.comment}
+            onChange={handleChange}
+            placeholder="Scrivi un commento..."
+            disabled={isPosting}
+          />
+        </Form.Group>
 
-        console.log(datiForm)
+        <Form.Group className="mb-3">
+          <Form.Label>Valutazione</Form.Label>
+          <Form.Select
+            name="rate"
+            value={formData.rate}
+            onChange={handleChange}
+            disabled={isPosting}
+          >
+            <option value="1">⭐ 1</option>
+            <option value="2">⭐ 2</option>
+            <option value="3">⭐ 3</option>
+            <option value="4">⭐ 4</option>
+            <option value="5">⭐ 5</option>
+          </Form.Select>
+        </Form.Group>
 
-        fetch(API_URL, {
-            method: 'POST',
-            body: JSON.stringify(datiForm),
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODdhODE4ZTQwMTRhZjAwMTVmMGM1NWEiLCJpYXQiOjE3NTI4NTkwMjIsImV4cCI6MTc1NDA2ODYyMn0.i1ChD9nJdUO5ygRJfzMd9cD2AiLBdlHBk4i6W5iPBDk'
-            }
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data)
-            })
-            .catch(error => {
-                console.log('Errore nella fetch: ', error)
-            })
-    }
+        {error && <Alert variant="danger">Errore: {error.message}</Alert>}
 
-    const handleChange = (e) => {
-        setDatiForm({
-            ...datiForm,
-            [e.target.name]: e.target.value
-        })
-    }
-
-    return (
-        <>
-            <Form>
-                <Form.Group>
-                    <Form.Label>Commento</Form.Label>
-                    <Form.Control type='text'
-                        name="comment"
-
-                        onChange={handleChange} />
-                </Form.Group>
-
-                <Form.Group>
-                    <Form.Label>Valutazione</Form.Label>
-                    <Form.Select type='text'
-                        name="rate"
-                        onChange={handleChange}>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </Form.Select>
-                </Form.Group>
-                <Button onClick={salvaDati} className="btn btn-primary btn-sm me-2 mt-2">Salva</Button>
-                <Button onClick={() => onDelete(comment._id)} className="btn btn-danger btn-sm mt-2">Elimina</Button>
-            </Form>
-        </>
-    )
+        <Button
+          type="submit"
+          className="btn btn-primary btn-sm"
+          disabled={isPosting}
+        >
+          {isPosting ? <Spinner animation="border" size="sm" /> : 'Salva'}
+        </Button>
+      </Form>
+    </>
+  )
 }
 
 export default AddComment

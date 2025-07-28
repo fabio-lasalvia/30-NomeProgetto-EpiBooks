@@ -3,6 +3,11 @@ import { Col, Card, Button } from "react-bootstrap"
 
 function SingleBook({ libro }) {
 
+    const [selected, setSelected] = useState(false)
+
+    const toggleSelection = () => setSelected(prev => !prev)
+
+
     return (
 
         <Col sm={12} md={6} lg={4}>
@@ -26,6 +31,9 @@ function SingleBook({ libro }) {
                     </Button>
                 </Card.Body>
             </Card>
+
+            <CommentArea asin={libro.asin} visible={selected} />
+
         </Col>
 
     )
