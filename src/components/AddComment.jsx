@@ -15,14 +15,13 @@ function AddComment({ asin }) {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
-      elementId: asin // lo rimettiamo ogni volta per sicurezza
+      elementId: asin
     })
   }
 
   const salvaDati = async (e) => {
     e.preventDefault()
     await commentPost(formData)
-    // opzionale: reset del form dopo l'invio
     setFormData({
       comment: '',
       rate: '1',

@@ -1,4 +1,4 @@
-import { Button } from "bootstrap";
+import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function NotFound() {

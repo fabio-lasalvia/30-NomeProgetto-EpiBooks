@@ -1,3 +1,5 @@
+
+import { useState } from "react"
 import { Col, Card, Button } from "react-bootstrap"
 
 
@@ -26,13 +28,14 @@ function SingleBook({ libro }) {
                     <Card.Title title={libro.title} className="text-truncate">{libro.title}</Card.Title>
                     <Card.Text className="text-center fst-italic fw-semibold text-primary">€ {libro.price}</Card.Text>
 
-                    <Button variant="primary" className="mt-auto">
+                    <Button variant="primary" className="mt-auto mb-2">
                         Aggiungi
+                    </Button>
+                    <Button variant="primary" className="mt-auto">
+                        Dettagli
                     </Button>
                 </Card.Body>
             </Card>
-
-            <CommentArea asin={libro.asin} visible={selected} />
 
         </Col>
 

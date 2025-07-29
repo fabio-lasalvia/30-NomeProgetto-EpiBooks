@@ -1,4 +1,4 @@
-import SingleComment from "./singleComment"
+import SingleComment from "./SingleComment"
 
 import useCommentDelete from '../hooks/comments/useCommentDelete'
 
