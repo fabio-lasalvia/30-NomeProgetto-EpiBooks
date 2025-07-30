@@ -24,15 +24,15 @@ function Home() {
       <Container>
         <Row>
           <Col md={9}>
-            <AllTheBooks toggleSelectedBook={toggleSelectedBook} libri={fantasyBooks} category="Fantasy" />
-            <AllTheBooks toggleSelectedBook={toggleSelectedBook} libri={historyBooks} category="History" />
-            <AllTheBooks toggleSelectedBook={toggleSelectedBook} libri={horrorBooks} category="Horror" />
-            <AllTheBooks toggleSelectedBook={toggleSelectedBook} libri={romanceBooks} category="Romance" />
-            <AllTheBooks toggleSelectedBook={toggleSelectedBook} libri={scifiBooks} category="Sci-Fi" />
+            <AllTheBooks toggleSelectedBook={toggleSelectedBook} selectedBook={selectedBook} libri={fantasyBooks} category="Fantasy" />
+            <AllTheBooks toggleSelectedBook={toggleSelectedBook} selectedBook={selectedBook} libri={historyBooks} category="History" />
+            <AllTheBooks toggleSelectedBook={toggleSelectedBook} selectedBook={selectedBook} libri={horrorBooks} category="Horror" />
+            <AllTheBooks toggleSelectedBook={toggleSelectedBook} selectedBook={selectedBook} libri={romanceBooks} category="Romance" />
+            <AllTheBooks toggleSelectedBook={toggleSelectedBook} selectedBook={selectedBook} libri={scifiBooks} category="Sci-Fi" />
           </Col>
           <Col md={3}>
             <div className="comment-area-sticky">
-              <CommentArea selectedBook={selectedBook}/>
+              <CommentArea asin={selectedBook}/>
             </div>
           </Col>
         </Row>

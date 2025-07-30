@@ -2,7 +2,7 @@ import { Row } from "react-bootstrap"
 import SingleBook from "./SingleBook"
 
 
-function AllTheBooks({ libri, category, toggleSelectedBook }) {
+function AllTheBooks({ libri, category, toggleSelectedBook, selectedBook  }) {
 
     return (
         <>
@@ -10,7 +10,7 @@ function AllTheBooks({ libri, category, toggleSelectedBook }) {
 
             <Row className="g-3">
                 {libri.map((libro) => (
-                    <SingleBook key={libro.asin} libro={libro} toggleSelectedBook={toggleSelectedBook} />
+                    <SingleBook key={libro.asin} libro={libro} toggleSelectedBook={toggleSelectedBook} selectedBook={selectedBook}/>
                 ))}
             </Row>
 

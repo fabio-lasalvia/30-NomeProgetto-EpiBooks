@@ -7,7 +7,8 @@ function SingleBook({ libro, toggleSelectedBook, selectedBook }) {
   return (
     <Col sm={12} md={6} lg={4}>
       <Card onClick={() => toggleSelectedBook(libro.asin)}
-        className={selectedBook === libro.asin ? "border border-danger border-3" : ""}>
+        className={selectedBook === libro.asin ? "border border-danger border-3" : ""}
+        style={{ cursor: "pointer" }}>
         <Card.Img
           src={libro.img}
           variant="top"
