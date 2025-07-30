@@ -8,27 +8,28 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import BookDetails from "./components/BookDetails";
 
+import ProtectedRoutes from "./pages/ProtectedRoutes";
+
 function App() {
   return (
-    <>
-      <BrowserRouter>
-        <MainLayout>
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/books/:asin" element={<BookDetails />}></Route>
-            <Route path="*" element={<NotFound />}></Route>
+    <BrowserRouter>
+      <Routes>
+        {/* Layout principale con navbar + footer */}
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<Home />} />
+          <Route path="books/:asin" element={<BookDetails />} />
 
-            <Route element={<ProtectedRoutes/>}>
+          {/* Rotte protette */}
+          <Route element={<ProtectedRoutes />}>
+            {/* <Route path="profile" element={<UserProfile />} /> */}
+            {/* <Route path="cart" element={<Cart />} /> */}
+          </Route>
 
-
-            </Route>
-
-            {/* <Route element={<GuestRoutes/>}></Route> */}
-
-          </Routes>
-        </MainLayout>
-      </BrowserRouter>
-    </>
+          {/* 404 */}
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

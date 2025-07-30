@@ -1,7 +1,7 @@
 import { Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-function NotFound() {
+function E404() {
   return (
     <Container
       className="d-flex flex-column justify-content-center align-items-center"
@@ -18,4 +18,4 @@ function NotFound() {
   );
 }
 
-export default NotFound;
+export default E404;

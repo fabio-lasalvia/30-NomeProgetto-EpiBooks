@@ -1,14 +1,15 @@
+import { Outlet } from "react-router";
 import MyFooter from "./MyFooter";
 import MyNav from "./MyNav";
 
 
-function MainLayout({ children }) {
+function MainLayout() {
     return (
         <div className="d-flex flex-column min-vh-100">
             <MyNav />
 
             <main className="flex-grow-1">
-                {children}
+                <Outlet/>
             </main>
 
             <MyFooter />

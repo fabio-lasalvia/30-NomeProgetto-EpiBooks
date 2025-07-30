@@ -2,12 +2,12 @@ import { useState } from "react";
 import { Col, Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-function SingleBook({ libro }) {
-  const [selected, setSelected] = useState(false);
+function SingleBook({ libro, toggleSelectedBook, selectedBook }) {
 
   return (
     <Col sm={12} md={6} lg={4}>
-      <Card>
+      <Card onClick={() => toggleSelectedBook(libro.asin)}
+        className={selectedBook === libro.asin ? "border border-danger border-3" : ""}>
         <Card.Img
           src={libro.img}
           variant="top"

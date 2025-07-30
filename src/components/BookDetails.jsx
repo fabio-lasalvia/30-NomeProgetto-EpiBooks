@@ -12,7 +12,8 @@ function BookDetails() {
 
   return (
     <>
-      <Button className="m-3" onClick={() => navigate(-1)}>
+      <Button className="m-3" variant="dark" onClick={() => navigate(-1)}>
+        <i className="bi bi-arrow-left me-2"></i>
         Indietro
       </Button>
 

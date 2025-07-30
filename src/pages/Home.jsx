@@ -11,7 +11,12 @@ import horrorBooks from "../data/horror.json";
 import romanceBooks from "../data/romance.json";
 import scifiBooks from "../data/scifi.json";
 
+import useSelectedBook from "../hooks/books/useSelectedBook";
+
 function Home() {
+
+  const { toggleSelectedBook, selectedBook } = useSelectedBook()
+
   return (
     <>
       <h1 className="text-center py-3">EpiBooks</h1>
@@ -19,15 +24,15 @@ function Home() {
       <Container>
         <Row>
           <Col md={9}>
-            <AllTheBooks libri={fantasyBooks} category="Fantasy" />
-            <AllTheBooks libri={historyBooks} category="History" />
-            <AllTheBooks libri={horrorBooks} category="Horror" />
-            <AllTheBooks libri={romanceBooks} category="Romance" />
-            <AllTheBooks libri={scifiBooks} category="Sci-Fi" />
+            <AllTheBooks toggleSelectedBook={toggleSelectedBook} libri={fantasyBooks} category="Fantasy" />
+            <AllTheBooks toggleSelectedBook={toggleSelectedBook} libri={historyBooks} category="History" />
+            <AllTheBooks toggleSelectedBook={toggleSelectedBook} libri={horrorBooks} category="Horror" />
+            <AllTheBooks toggleSelectedBook={toggleSelectedBook} libri={romanceBooks} category="Romance" />
+            <AllTheBooks toggleSelectedBook={toggleSelectedBook} libri={scifiBooks} category="Sci-Fi" />
           </Col>
           <Col md={3}>
             <div className="comment-area-sticky">
-              <CommentArea />
+              <CommentArea selectedBook={selectedBook}/>
             </div>
           </Col>
         </Row>

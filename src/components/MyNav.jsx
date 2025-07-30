@@ -10,9 +10,11 @@ import {
 import { NavLink } from "react-router-dom";
 
 import useToggleTema from "../hooks/useToggleTema";
+import useAuth from "../hooks/useAuth";
 
 function MyNav() {
   const { cambiaTema, tema } = useToggleTema();
+  const { isLogged, toggleLogin } = useAuth();
 
   return (
     <Navbar bg="dark" variant="dark" expand="md" className="py-2">
@@ -60,6 +62,16 @@ function MyNav() {
             </InputGroup>
           </Form>
 
+          {/*TEMA*/}
+          <Nav.Item>
+            <Button onClick={cambiaTema} variant="secondary">
+              {tema == 'light' ?
+                (<i className="bi bi-moon-fill"></i>)
+                : (<i className="bi bi-brightness-low-fill"></i>)
+              }
+            </Button>
+          </Nav.Item>
+
           {/* PROFILO */}
           <Dropdown align="end">
             <Dropdown.Toggle
@@ -71,7 +83,11 @@ function MyNav() {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-              <Dropdown.Item>Profilo</Dropdown.Item>
+              <Dropdown.Item onClick={toggleLogin}>
+                <i className={`bi ${isLogged ? "bi-person-circle" : "bi-box-arrow-in-right"}`}></i>
+                {" "}{isLogged ? "Profilo" : "LogIn"}
+              </Dropdown.Item>
+
               <Dropdown.Item onClick={cambiaTema}>Toggle Tema</Dropdown.Item>
               <Dropdown.Item>Impostazioni</Dropdown.Item>
               <Dropdown.Divider />

@@ -1,7 +1,7 @@
 import CommentList from "./CommentList"
 import AddComment from "./AddComment"
 
-import useComments from "../hooks/useComments"
+import useComments from "../hooks/comments/useComments"
 import { useEffect } from "react"
 
 function CommentArea({ asin }) {
