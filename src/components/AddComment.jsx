@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Form, Button, Spinner, Alert } from "react-bootstrap"
 import useCommentPost from "../hooks/comments/useCommentPost"
 
-function AddComment({ asin }) {
+function AddComment({ asin, onCommentSaved  }) {
   const { commentPost, isPosting, error } = useCommentPost()
 
   const [formData, setFormData] = useState({
@@ -22,6 +22,7 @@ function AddComment({ asin }) {
   const salvaDati = async (e) => {
     e.preventDefault()
     await commentPost(formData)
+    onCommentSaved()
     setFormData({
       comment: '',
       rate: '1',
@@ -64,7 +65,7 @@ function AddComment({ asin }) {
 
         <Button
           type="submit"
-          className="btn btn-primary btn-sm"
+          className="btn btn-primary btn-sm position-end"
           disabled={isPosting}
         >
           {isPosting ? <Spinner animation="border" size="sm" /> : 'Salva'}

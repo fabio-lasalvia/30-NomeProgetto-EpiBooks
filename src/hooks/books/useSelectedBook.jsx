@@ -8,7 +8,7 @@ function useSelectedBook() {
     }, [selectedBook])
 
     function toggleSelectedBook(asin){
-        setSelectedBook(prev => (prev === asin ? null : asin))
+        setSelectedBook(oldBook => (oldBook === asin ? null : asin))
     }
 
     return { toggleSelectedBook, selectedBook }

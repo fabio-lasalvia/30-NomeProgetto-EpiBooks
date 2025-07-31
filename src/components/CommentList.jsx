@@ -2,7 +2,7 @@ import SingleComment from "./SingleComment"
 
 import useCommentDelete from '../hooks/comments/useCommentDelete'
 
-function CommentList({ comments, asin }) {
+function CommentList({ comments, onCommentDeleted }) {
 
     const { deleteComment, isDeleting, error } = useCommentDelete()
 
@@ -15,7 +15,7 @@ function CommentList({ comments, asin }) {
 
                 <ul>
                     {comments.map((comment) => (
-                        <SingleComment key={comment._id} comment={comment} onDelete={() => deleteComment(comment._id)} />
+                        <SingleComment key={comment._id} comment={comment} onDelete={() => deleteComment(comment._id)} onCommentDeleted={onCommentDeleted} />
                     ))}
 
                 </ul>

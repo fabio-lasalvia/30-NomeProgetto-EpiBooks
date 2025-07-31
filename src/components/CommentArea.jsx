@@ -3,6 +3,8 @@ import AddComment from "./AddComment"
 
 import useComments from "../hooks/comments/useComments"
 import { useEffect } from "react"
+import { Button } from "react-bootstrap"
+import useShowAddComment from "../hooks/comments/useShowAddComment"
 
 function CommentArea({ asin }) {
 
@@ -14,9 +16,19 @@ function CommentArea({ asin }) {
         }
     }, [asin])
 
+    const { mostraAddComment, showModal } = useShowAddComment()
+
     return (
-        <>
-            <AddComment asin={asin} />
+        <div className="card p-3 mt-4">
+
+            <h1 className="me-2">Commenti</h1>
+
+            <Button onClick={mostraAddComment}>
+                <i className="bi bi-plus-lg me-2"></i>
+                Aggiungi
+            </Button>
+
+            {showModal && <AddComment asin={asin} onCommentSaved={() => fetchComments(asin)} />}
 
             {error && (
                 <div className="position-fixed top-50 start-50 translate-middle z-3">
@@ -27,8 +39,8 @@ function CommentArea({ asin }) {
             )}
             {loading && <p className="text-center">Caricamento commenti...</p>}
 
-            <CommentList comments={comments} asin={asin} />
-        </>
+            <CommentList comments={comments} asin={asin} onCommentDeleted={fetchComments} />
+        </div>
     )
 }
 

@@ -3,6 +3,7 @@ import { useState } from "react";
 
 function useCommentPost() {
 
+    const [loading, setLoading] = useState(false)
     const [isPosting, setIsPosting] = useState('')
     const [error, setError] = useState(null)
 
@@ -32,15 +33,16 @@ function useCommentPost() {
             return data
         } catch (error) {
             console.log('Errore nella fetch ', error)
-            setError()
+            setError(error.message)
             setIsPosting(false)
+            setLoading(false)
             return null
         }
 
 
     }
     
-    return { commentPost, isPosting, error }
+    return { commentPost, loading, isPosting, error }
 }
 
 export default useCommentPost
