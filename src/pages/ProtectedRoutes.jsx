@@ -4,7 +4,7 @@ import { useAuth } from "../contexts/AuthProvider";
 function ProtectedRoutes() {
   const { authUser } = useAuth();
 
-  return authUser ? <Outlet /> : <Navigate to="/" />;
+  return <>{authUser ? <Outlet /> : <Navigate to="/" />}</>;
 }
 
 export default ProtectedRoutes;
