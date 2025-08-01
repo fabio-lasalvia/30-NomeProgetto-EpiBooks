@@ -12,6 +12,7 @@ import romanceBooks from "../data/romance.json";
 import scifiBooks from "../data/scifi.json";
 
 import useSelectedBook from "../hooks/books/useSelectedBook";
+import CookieBanner from "../components/CookieBanner";
 
 function Home() {
 
@@ -32,9 +33,12 @@ function Home() {
           </Col>
           <Col md={3}>
             <div className="comment-area-sticky">
-              <CommentArea asin={selectedBook}/>
+              <CommentArea asin={selectedBook} />
             </div>
           </Col>
+
+          <CookieBanner />
+
         </Row>
       </Container>
     </>
