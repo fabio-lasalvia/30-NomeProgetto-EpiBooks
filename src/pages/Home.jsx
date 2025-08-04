@@ -13,6 +13,7 @@ import scifiBooks from "../data/scifi.json";
 
 import useSelectedBook from "../hooks/books/useSelectedBook";
 import CookieBanner from "../components/CookieBanner";
+import Paginazione from "../components/Paginazione";
 
 function Home() {
 
@@ -38,6 +39,8 @@ function Home() {
           </Col>
 
           <CookieBanner />
+
+          <Paginazione />
 
         </Row>
       </Container>
