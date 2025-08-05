@@ -4,6 +4,8 @@ function useCommentDelete() {
     const [isDeleting, setIsDeleting] = useState(false);
     const [error, setError] = useState(null);
 
+    const token = import.meta.env.VITE_API_TOKEN
+
     async function deleteComment(asin) {
         setIsDeleting(true)
         setError(null)
@@ -16,7 +18,7 @@ function useCommentDelete() {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODdhODE4ZTQwMTRhZjAwMTVmMGM1NWEiLCJpYXQiOjE3NTI4NTkwMjIsImV4cCI6MTc1NDA2ODYyMn0.i1ChD9nJdUO5ygRJfzMd9cD2AiLBdlHBk4i6W5iPBDk'
+                    'Authorization': `Bearer ${token}`
                 }
             })
 

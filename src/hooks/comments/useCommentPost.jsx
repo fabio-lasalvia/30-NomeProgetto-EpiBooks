@@ -4,22 +4,23 @@ import { useState } from "react";
 function useCommentPost() {
 
     const [loading, setLoading] = useState(false)
-    const [isPosting, setIsPosting] = useState('')
+    const [isPosting, setIsPosting] = useState(false)
     const [error, setError] = useState(null)
 
+    const API_URL = `https://striveschool-api.herokuapp.com/api/comments`
+    const token = import.meta.env.VITE_API_TOKEN
+
     async function commentPost(commentData) {
-        setLoading(false)
+        setLoading(true)
         setIsPosting(true)
         setError(null)
-
-        const API_URL = `https://striveschool-api.herokuapp.com/api/comments`
 
         try {
             const response = await fetch(API_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODdhODE4ZTQwMTRhZjAwMTVmMGM1NWEiLCJpYXQiOjE3NTI4NTkwMjIsImV4cCI6MTc1NDA2ODYyMn0.i1ChD9nJdUO5ygRJfzMd9cD2AiLBdlHBk4i6W5iPBDk'
+                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify(commentData)
             })
@@ -29,19 +30,19 @@ function useCommentPost() {
             }
 
             const data = await response.json()
-            setIsPosting(false)
+            //setIsPosting(false)
             return data
         } catch (error) {
             console.log('Errore nella fetch ', error)
             setError(error.message)
+            return null
+        } finally {
             setIsPosting(false)
             setLoading(false)
-            return null
         }
 
-
     }
-    
+
     return { commentPost, loading, isPosting, error }
 }
 

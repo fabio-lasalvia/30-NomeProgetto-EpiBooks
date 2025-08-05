@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 
-function usePagination(items, itemsPerPage) {
+function usePagination(items = [], itemsPerPage) {
 
     const [currentPage, setCurrentPage] = useState(1)
     const totalPages = Math.ceil(items.length / itemsPerPage)

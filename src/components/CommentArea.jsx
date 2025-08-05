@@ -39,7 +39,7 @@ function CommentArea({ asin }) {
             )}
             {loading && <p className="text-center">Caricamento commenti...</p>}
 
-            <CommentList comments={comments} asin={asin} onCommentDeleted={fetchComments} />
+            <CommentList comments={comments} asin={asin} onCommentDeleted={() => fetchComments(asin)} />
         </div>
     )
 }

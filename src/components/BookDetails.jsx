@@ -1,5 +1,7 @@
 import { Card, Row, Col, Button } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
+
+import CommentArea from "../components/CommentArea"
 import NotFound from "../pages/NotFound";
 
 function BookDetails() {
@@ -40,6 +42,10 @@ function BookDetails() {
           </Col>
         </Row>
       </Card>
+
+      <CommentArea asin={libro.asin} />
+
+
     </>
   );
 }

@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Form, Button, Spinner, Alert } from "react-bootstrap"
 import useCommentPost from "../hooks/comments/useCommentPost"
 
-function AddComment({ asin, onCommentSaved  }) {
+function AddComment({ asin, onCommentSaved }) {
   const { commentPost, isPosting, error } = useCommentPost()
 
   const [formData, setFormData] = useState({
@@ -21,13 +21,15 @@ function AddComment({ asin, onCommentSaved  }) {
 
   const salvaDati = async (e) => {
     e.preventDefault()
-    await commentPost(formData)
-    onCommentSaved()
-    setFormData({
-      comment: '',
-      rate: '1',
-      elementId: asin
-    })
+    const result = await commentPost(formData)
+    if (result) {
+      onCommentSaved()
+      setFormData({
+        comment: '',
+        rate: '1',
+        elementId: asin
+      })
+    }
   }
 
   return (
@@ -61,7 +63,7 @@ function AddComment({ asin, onCommentSaved  }) {
           </Form.Select>
         </Form.Group>
 
-        {error && <Alert variant="danger">Errore: {error.message}</Alert>}
+        {error && <Alert variant="danger">Errore: {error}</Alert>}
 
         <Button
           type="submit"

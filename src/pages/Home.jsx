@@ -25,17 +25,12 @@ function Home() {
       <Hero />
       <Container>
         <Row>
-          <Col md={9}>
+          <Col>
             <AllTheBooks toggleSelectedBook={toggleSelectedBook} selectedBook={selectedBook} libri={fantasyBooks} category="Fantasy" />
             <AllTheBooks toggleSelectedBook={toggleSelectedBook} selectedBook={selectedBook} libri={historyBooks} category="History" />
             <AllTheBooks toggleSelectedBook={toggleSelectedBook} selectedBook={selectedBook} libri={horrorBooks} category="Horror" />
             <AllTheBooks toggleSelectedBook={toggleSelectedBook} selectedBook={selectedBook} libri={romanceBooks} category="Romance" />
             <AllTheBooks toggleSelectedBook={toggleSelectedBook} selectedBook={selectedBook} libri={scifiBooks} category="Sci-Fi" />
-          </Col>
-          <Col md={3}>
-            <div className="comment-area-sticky">
-              <CommentArea asin={selectedBook} />
-            </div>
           </Col>
 
           <CookieBanner />
