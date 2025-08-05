@@ -1,7 +1,7 @@
 import { Card, Row, Col, Button } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import CommentArea from "../components/CommentArea"
+import CommentArea from "../components/CommentArea";
 import NotFound from "../pages/NotFound";
 
 function BookDetails() {
@@ -31,7 +31,10 @@ function BookDetails() {
             <Card.Body className="text-center">
               <Card.Title className="fs-3">{libro.title}</Card.Title>
               <Card.Text className="mt-2 text-muted">
-                {libro.description || "Nessuna descrizione disponibile."}
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Laborum tempora iure alias incidunt, facere ab nihil
+                necessitatibus harum saepe quae possimus similique optio
+                molestiae tenetur laudantium error repellendus impedit quas.
               </Card.Text>
             </Card.Body>
           </Col>
@@ -44,8 +47,6 @@ function BookDetails() {
       </Card>
 
       <CommentArea asin={libro.asin} />
-
-
     </>
   );
 }

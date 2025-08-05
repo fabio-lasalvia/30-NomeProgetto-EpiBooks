@@ -1,9 +1,8 @@
-import "../CSS/CommentArea.css";
 import { Container, Row, Col } from "react-bootstrap";
 
 import Hero from "../components/Hero";
-import AllTheBooks from "../components/AllTheBooks";
-import CommentArea from "../components/CommentArea";
+import CookieBanner from "../components/CookieBanner";
+import CategorySection from "../components/CategorySection";
 
 import fantasyBooks from "../data/fantasy.json";
 import historyBooks from "../data/history.json";
@@ -12,12 +11,9 @@ import romanceBooks from "../data/romance.json";
 import scifiBooks from "../data/scifi.json";
 
 import useSelectedBook from "../hooks/books/useSelectedBook";
-import CookieBanner from "../components/CookieBanner";
-import Paginazione from "../components/Paginazione";
 
 function Home() {
-
-  const { toggleSelectedBook, selectedBook } = useSelectedBook()
+  const { toggleSelectedBook, selectedBook } = useSelectedBook();
 
   return (
     <>
@@ -26,17 +22,44 @@ function Home() {
       <Container>
         <Row>
           <Col>
-            <AllTheBooks toggleSelectedBook={toggleSelectedBook} selectedBook={selectedBook} libri={fantasyBooks} category="Fantasy" />
-            <AllTheBooks toggleSelectedBook={toggleSelectedBook} selectedBook={selectedBook} libri={historyBooks} category="History" />
-            <AllTheBooks toggleSelectedBook={toggleSelectedBook} selectedBook={selectedBook} libri={horrorBooks} category="Horror" />
-            <AllTheBooks toggleSelectedBook={toggleSelectedBook} selectedBook={selectedBook} libri={romanceBooks} category="Romance" />
-            <AllTheBooks toggleSelectedBook={toggleSelectedBook} selectedBook={selectedBook} libri={scifiBooks} category="Sci-Fi" />
+            <CategorySection
+              title="Fantasy"
+              books={fantasyBooks}
+              toggleSelectedBook={toggleSelectedBook}
+              selectedBook={selectedBook}
+              itemsPerPage={6}
+            />
+            <CategorySection
+              title="History"
+              books={historyBooks}
+              toggleSelectedBook={toggleSelectedBook}
+              selectedBook={selectedBook}
+              itemsPerPage={6}
+            />
+            <CategorySection
+              title="Horror"
+              books={horrorBooks}
+              toggleSelectedBook={toggleSelectedBook}
+              selectedBook={selectedBook}
+              itemsPerPage={6}
+            />
+            <CategorySection
+              title="Romance"
+              books={romanceBooks}
+              toggleSelectedBook={toggleSelectedBook}
+              selectedBook={selectedBook}
+              itemsPerPage={6}
+            />
+            <CategorySection
+              title="Sci-Fi"
+              books={scifiBooks}
+              toggleSelectedBook={toggleSelectedBook}
+              selectedBook={selectedBook}
+              itemsPerPage={6}
+            />
           </Col>
 
           <CookieBanner />
-
-          <Paginazione />
-
         </Row>
       </Container>
     </>
@@ -44,4 +67,3 @@ function Home() {
 }
 
 export default Home;
-

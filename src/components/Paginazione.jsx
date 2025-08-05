@@ -1,33 +1,51 @@
-import { Button, Pagination } from 'react-bootstrap'
-import usePagination from '../hooks/usePagination'
+import { Button, Pagination } from "react-bootstrap";
+import usePagination from "../hooks/usePagination";
 
-function Paginazione() {
+function Paginazione({ items = [], itemsPerPage }) {
+  const {
+    currentItems,
+    currentPage,
+    totalPages,
+    goToPage,
+    nextPage,
+    prevPage,
+  } = usePagination(items, itemsPerPage);
 
-    const { currentItems, currentPage, totalPages, goToPage, nextPage, prevPage } = usePagination()
+  let paginationItems = [];
 
-    let paginationItems = []
+  paginationItems.push(
+    <Pagination.Prev
+      key="prev"
+      onClick={prevPage}
+      disabled={currentPage === 1}
+    />
+  );
 
+  for (let number = 1; number <= totalPages; number++) {
     paginationItems.push(
-        <Pagination.Prev key="prev" onClick={() => prevPage()} disbled={currentPage === 1}></Pagination.Prev>
-    )
+      <Pagination.Item
+        key={number}
+        active={number === currentPage}
+        onClick={() => goToPage(number)}
+      >
+        {number}
+      </Pagination.Item>
+    );
+  }
 
-    for (let number = 1; number <= totalPages; number++) {
-        items.push(
-            <Pagination.Item key={number} active={number === currentPage} onClick={() => goToPage()}>
-                {number}
-            </Pagination.Item>
-        )
-    }
+  paginationItems.push(
+    <Pagination.Next
+      key="next"
+      onClick={nextPage}
+      disabled={currentPage === totalPages}
+    />
+  );
 
-    paginationItems.push(
-        <Pagination.Next key="prev" onClick={() => nextPage()} disbled={currentPage === totalPages}></Pagination.Next>
-    )
-
-    return (
-        <>
-            <Pagination>{paginationItems}</Pagination>
-        </>
-    )
+  return (
+    <>
+      <Pagination>{paginationItems}</Pagination>
+    </>
+  );
 }
 
-export default Paginazione
+export default Paginazione;
