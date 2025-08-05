@@ -23,7 +23,7 @@ function MyNav() {
         <div className="order-0">
           <Navbar.Brand as={NavLink} to="/">
             <img
-              src="/img/logo/logoEpiBooks0.png"
+              src={`${import.meta.env.BASE_URL}img/logo/logoEpiBooks0.png`}
               alt="Logo Epi Books"
               className="rounded"
               style={{ maxWidth: "100px" }}

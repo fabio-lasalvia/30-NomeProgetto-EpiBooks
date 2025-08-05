@@ -3,6 +3,9 @@ import Carousel from 'react-bootstrap/Carousel';
 import '../CSS/Hero.css';
 
 function Hero() {
+
+    const base = import.meta.env.BASE_URL;
+
     return (
         <div className="hero-section" >
             <Carousel fade controls indicators style={{ borderRadius: '35px', overflow: 'hidden' }}>
@@ -10,7 +13,7 @@ function Hero() {
                 <Carousel.Item>
                     <Link to="/fantasy" title="Vai alla sezione Libri Fantasy" className="d-block position-relative">
                         <img
-                            src="/img/hero/heroFantasy.png"
+                            src={`${base}img/hero/heroFantasy.png`}
                             alt="Copertina Libri Fantasy"
                             className="carousel-img d-block w-100"
                         />
@@ -26,7 +29,7 @@ function Hero() {
                 <Carousel.Item>
                     <Link to="/history" title="Vai alla sezione Libri Storici" className="d-block position-relative">
                         <img
-                            src="/img/hero/heroHistory.jpg"
+                            src={`${base}img/hero/heroHistory.jpg`}                            
                             alt="Copertina Libri Storici"
                             className="carousel-img d-block w-100"
                         />
@@ -43,7 +46,7 @@ function Hero() {
                 <Carousel.Item>
                     <Link to="/horror" title="Vai alla sezione Libri Horror" className="d-block position-relative">
                         <img
-                            src="/img/hero/heroHorror.jpg"
+                            src={`${base}img/hero/heroHorror.jpg`}
                             alt="Copertina Libri Horror"
                             className="carousel-img d-block w-100"
                         />
@@ -59,7 +62,7 @@ function Hero() {
                 <Carousel.Item>
                     <Link to="/romantico" title="Vai alla sezione Libri Romance" className="d-block position-relative">
                         <img
-                            src="/img/hero/heroRomance.jpg"
+                            src={`${base}img/hero/heroRomance.jpg`}                        
                             alt="Copertina Libri Romantici"
                             className="carousel-img d-block w-100"
                         />
@@ -75,7 +78,7 @@ function Hero() {
                 <Carousel.Item>
                     <Link to="/scifi" title="Vai alla sezione Libri Sci-Fi" className="d-block position-relative">
                         <img
-                            src="/img/hero/heroSciFi.jpg"
+                            src={`${base}img/hero/heroSciFi.jpg`}                            
                             alt="Copertina Libri Sci-Fi"
                             className="carousel-img d-block w-100"
                         />
